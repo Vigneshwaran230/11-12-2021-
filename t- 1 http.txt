@@ -1,0 +1,109 @@
+1)Write a blog on Difference between HTTP1.1 vs HTTP2
+
+HTTP 1.1:
+
+     It was released in 1997.
+     It uses text based commands for HTTP requests.
+     In this process, a client sends a text-based request to a server by calling a method like GET or POST. In response, the server sends a resource like an HTML page back to the client.
+     It uses requests resource Inlining for  getting multiple pages
+     It added many performance enhancements e.g. caching, request pipelining, keep-alive connections, transfer encoding, byte range requests etc.
+     It can load one requests at a time. Hence one request per one TCP connection is possible.
+     It supports connection reuse i.e. for every TCP connection there could be multiple requests and responses, 
+   and pipelining where the client can request several resources from the server at once. However, pipelining was hard to implement due to issues such as head-of-line blocking 
+   and was not a feasible solution.
+     It provides faster delivery of web pages and reduces web traffic as compared to HTTP/1.0.
+     However, TCP starts slowly and with domain sharding (resources can be downloaded simultaneously by using multiple domains), connection reuse and pipelining, 
+   there is an increased risk of network congestion
+     It relies on the transport layer to avoid buffer overflow, each new TCP connection requires a separate flow control mechanism.
+     Each header is quite small, the burden of this uncompressed data weighs heavier and heavier on the connection as more requests are made,
+   particularly penalizing complicated, API-heavy web applications that require many different resources and thus many different resource requests. 
+
+
+HTTP 2.O:
+
+    It was released in Feb. 2015 by IERF.
+    It is binary and not textual.
+    It began as the SPDY protocol, developed primarily at Google with the intention of reducing web page load latency by using techniques
+   such as compression, multiplexing, and prioritization. 
+    It is fully multiplexed.
+    It interleaves multiple requests/responses in parallel without blocking on anyone. It uses single TCP connection to deliver multiple requests/responses (in parallel).
+    It uses header compression in order to reduce overhead.
+    It allows servers to "push" responses into client caches proactively.
+    It removes unnecessary HTTP/1.x work-arounds e.g. Image sprites, domain sharing etc.It is less error prone than HTTP/1.
+    Uses multiplexing, where over a single TCP connection resources to be delivered are interleaved and arrive at the client almost at the same time. 
+    It is done using streams which can be prioritized, can have dependencies and individual flow control. 
+    It also provides a feature called server push that allows the server to send data that the client will need but has not yet requested.
+    It utilizes multiplexing and server push to effectively reduce the page load time by a greater margin along with being less sensitive to network delays.
+    HTTP2 is much faster and more reliable than HTTP1. HTTP1 loads a single request for every TCP connection, while HTTP2 avoids network delay by using multiplexing.
+    It multiplexes streams within a single TCP connection, and will have to implement flow control in a different manner.
+    It can split headers from their data, resulting in a header frame and a data frame. 
+    It uses PUSH frame by server that collects all multiple pages 
+
+2)Write a blog about objects and its internal representation in Javascript
+ 
+Object:
+    ->In Javascript  object is an entity having properties and method. For eg. if you take car as an example it has a model, style,color etc. 
+      Likewise javascript object also have properties which defines their character.
+      Javascript is an object based language everything is an  object in js.
+ 
+  *Boolean can be object if we define with "new" keyword
+  *Number  can be object if we define with "new" keyword
+  *String  can be object if we define with "new" keyword
+  *Dates are always objects
+  *Math are always objects
+  *Regular expression are always objects
+  *Array are always objects
+  *Function are always objects
+  *Objects are always objects  
+
+ -> Objects in Programming can be combination of variables,function,and data structre,This means that object can  store and manipulate values and 
+combine them into more complex objects like arrays.
+ -> An object is an unordered collection of key - value pair .each key value pair is called a property.key of the property can be a string and a value of a property can be value 
+eg string,a number ,an array and even a function.
+ ->Objects are more complex and each object may contain any combination of these primitive data-types as well as reference data-types.
+ -> object will be inside a set of {}.
+->A JavaScript object has properties associated with it and  the properties of an object define the characteristics of the object.
+	syntax: objectName.propertyName
+ 	eg : =>To create object and assigning value to properties:
+
+		var mycar= new Object();
+		mycar.make="TATA";
+		mycar.model="Altroz";
+		mycar.year=2021;
+
+	     =>Properties of JS can be accessed using bracket notation:
+
+		var mycar= new Object();
+		mycar['make']="TATA";
+		mycar['model']="Altroz";
+		mycar['year']=2021;
+
+Creating js object:
+ -> Different ways to create js object 
+    1. using an object literal
+    2. using new keyword
+    3. using "Object.create()"
+    4. using constructor 
+ Using an object literal:
+    One of the easiest way to create object.it define the property and value inside curly braces
+            
+               const person ={ person.firstname="vicky"; person.lastname="sowmi"; person.age="25"}
+
+Using new keyword:
+            To create an object use new keyword
+              
+              const person = new Object();
+              person.firstname="vicky";
+              person.lastname="sowmi";
+
+Using constructor :    
+		constructor is a function with new keyword, It helps to create multiple object of same flavours.
+
+function Car(model, brand) {
+   this.model = model;
+   this.brand = brand;
+}           
+let car1 = new Car(’Fiesta’, 'Ford’);
+let car2 = new Car(’Altroz’, 'Tata’);
+console.log(car1.model); //o/p Fiesta
+console.log(car2.brand); //o/p Tata
